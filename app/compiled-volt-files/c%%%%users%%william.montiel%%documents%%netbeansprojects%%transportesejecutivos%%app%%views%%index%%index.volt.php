@@ -4,41 +4,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=1">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <link rel="icon" type="image/x-icon" href="{{url('')}}images/favicons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="<?php echo $this->url->get(''); ?>images/favicons/favicon.ico">
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/css/bootstrap.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/css/bootstrap.min.css'); ?>
     <!--Nifty Stylesheet [ REQUIRED ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/css/nifty.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/css/nifty.min.css'); ?>
     <!--Font Awesome [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/font-awesome/css/font-awesome.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/font-awesome/css/font-awesome.min.css'); ?>
     <!--Animate.css [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/animate-css/animate.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/animate-css/animate.min.css'); ?>
     <!--Morris.js [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/morris-js/morris.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/morris-js/morris.min.css'); ?>
     <!--Switchery [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/switchery/switchery.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/switchery/switchery.min.css'); ?>
     <!--Bootstrap Select [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.css'); ?>
     <!--Demo script [ DEMONSTRATION ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/css/demo/nifty-demo.min.css') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/css/demo/nifty-demo.min.css'); ?>
     <!--SCRIPT-->
     <!--=================================================-->
 
     <!--Page Load Progress Bar [ OPTIONAL ]-->
-    {{ stylesheet_link('vendors/nifty-template/template/plugins/pace/pace.min.css') }}
-    {{ javascript_include('vendors/nifty-template/template/plugins/pace/pace.min.js') }}
+    <?php echo $this->tag->stylesheetLink('vendors/nifty-template/template/plugins/pace/pace.min.css'); ?>
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/pace/pace.min.js'); ?>
     
     <!-- Custom CSS -->
-    {{ stylesheet_link('css/adjustments.css') }}
+    <?php echo $this->tag->stylesheetLink('css/adjustments.css'); ?>
 
     <!-- CSS added with volt-->
-    {% block css %}{% endblock %}
+    
   </head>
  <body class=" nifty-ready pace-done" cz-shortcut-listen="true">
 
-    {% block content %}{% endblock %}
+    
     
     
     <div class="pace  pace-inactive">
@@ -57,7 +57,7 @@
 				<!--================================-->
 				<div class="navbar-header">
 					<a href="http://www.transportesejecutivos.com/admin/main.php" class="navbar-brand">
-						<img src="{{url('')}}images/logos/logo.png" alt="Nifty Logo" class="brand-icon">
+						<img src="<?php echo $this->url->get(''); ?>images/logos/logo.png" alt="Nifty Logo" class="brand-icon">
 						<div class="brand-title">
 							<span class="brand-text">Administración</span>
 						</div>
@@ -772,30 +772,30 @@
 		</footer>
     
     <!--jQuery [ REQUIRED ]-->
-    {{ javascript_include('vendors/nifty-template/template/js/jquery-2.1.1.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/js/jquery-2.1.1.min.js'); ?>
     <!--BootstrapJS [ RECOMMENDED ]-->
-    {{ javascript_include('vendors/nifty-template/template/js/bootstrap.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/js/bootstrap.min.js'); ?>
     <!--Fast Click [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/fast-click/fastclick.min.js') }}	
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/fast-click/fastclick.min.js'); ?>	
     <!--Nifty Admin [ RECOMMENDED ]-->
-    {{ javascript_include('vendors/nifty-template/template/js/nifty.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/js/nifty.min.js'); ?>
     <!--Morris.js [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/morris-js/morris.min.js') }}
-    {{ javascript_include('vendors/nifty-template/template/plugins/morris-js/raphael-js/raphael.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/morris-js/morris.min.js'); ?>
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/morris-js/raphael-js/raphael.min.js'); ?>
     <!--Sparkline [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/sparkline/jquery.sparkline.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/sparkline/jquery.sparkline.min.js'); ?>
     <!--Skycons [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/skycons/skycons.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/skycons/skycons.min.js'); ?>
     <!--Switchery [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/switchery/switchery.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/switchery/switchery.min.js'); ?>
     <!--Bootstrap Select [ OPTIONAL ]-->
-    {{ javascript_include('vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.js'); ?>
     <!--Demo script [ DEMONSTRATION ]-->
-    {{ javascript_include('vendors/nifty-template/template/js/demo/nifty-demo.min.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/js/demo/nifty-demo.min.js'); ?>
     <!--Specify page [ SAMPLE ]-->
-    {{ javascript_include('vendors/nifty-template/template/js/demo/dashboard.js') }}
+    <?php echo $this->tag->javascriptInclude('vendors/nifty-template/template/js/demo/dashboard.js'); ?>
     
     <!-- JS added with volt -->
-    {% block js %}{% endblock %}
+    
   </body>
 </html>

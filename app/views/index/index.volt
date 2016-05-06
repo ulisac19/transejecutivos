@@ -1,1 +1,1 @@
-
+{% extends "templates/default.volt" %}
