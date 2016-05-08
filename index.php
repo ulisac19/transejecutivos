@@ -1,10 +1,10 @@
 <?php
 
-require_once '../app/autoload.php';
+require_once realpath(dirname(__FILE__)) . '/app/autoload.php';
 
 try {
   $app = new \Transejecutivos\Configuration\Services();
-  $app->setConfigFilePath("../app/config/configuration.ini");
+  $app->setConfigFilePath(realpath(dirname(__FILE__)) . "/app/config/configuration.ini");
 
   $app->load();
 
