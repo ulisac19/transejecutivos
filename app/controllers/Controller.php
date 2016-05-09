@@ -78,15 +78,19 @@ class Controller extends \Phalcon\Mvc\Controller {
    * @return boolean
    * @throws InvalidArgumentException
    */
-  protected function saveModel($model, $successMsg) {
-    if ($model->save()) {
+  protected function saveModel($form, $model, $successMsg) {
+    if ($form->isValid() && $model->save()) {
       if (!empty($successMsg)) {
-        $this->flashSession->success($successMsg);
+        $this->flash->success($successMsg);
       }
       return true;
     }
 
     $m = "";
+    foreach ($form->getMessages() as $msg) {
+      $m .= $msg . "<br>";
+    }
+    
     foreach ($model->getMessages() as $msg) {
       $m .= $msg . "<br>";
     }

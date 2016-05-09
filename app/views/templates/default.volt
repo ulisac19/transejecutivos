@@ -13,8 +13,7 @@
     {{ stylesheet_link('/public/vendors/nifty-template/template/css/nifty.min.css') }}
     <!--Font Awesome [ OPTIONAL ]-->
     {{ stylesheet_link('/public/vendors/nifty-template/template/plugins/font-awesome/css/font-awesome.min.css') }}
-    <!--Bootstrap Select [ OPTIONAL ]-->
-    {{ stylesheet_link('/public/vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.css') }}
+    
     <!--SCRIPT-->
     <!--=================================================-->
 
@@ -29,7 +28,6 @@
   {% block css %}{% endblock %}
 </head>
 <body class=" nifty-ready pace-done" cz-shortcut-listen="true">
-
   <div id="container" class="effect mainnav-sm">
     <header id="navbar">
       <div id="navbar-container" class="boxed">
@@ -445,6 +443,18 @@
           </div>
         </div>
       </nav>
+      
+      <div id="content-container">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              {% block content %}
+              
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- FOOTER -->
@@ -467,29 +477,23 @@
             </div>
           </li>
           <li>
-            <a href="http://www.transportesejecutivos.com/admin/logout.php">
+            <a href="#">
               <button class="btn btn-sm btn-dark btn-active-success">Salir</button></a>	
           </li>
         </ul>
       </div>
-      <p class="pad-lft">© 2015 Transportes Ejecutivos. Módulo de Administración Versión 5</p>
+      <p class="pad-lft">© 2015 Transportes Ejecutivos. Módulo de Administración Versión 5.0</p>
     </footer>
   </div>
 
-{% block content %}{% endblock %}
-
-
-
-<!--jQuery [ REQUIRED ]-->
-{{ javascript_include('/public/vendors/nifty-template/template/js/jquery-2.1.1.min.js') }}
-<!--BootstrapJS [ RECOMMENDED ]-->
-{{ javascript_include('/public/vendors/nifty-template/template/js/bootstrap.min.js') }}
-<!--Nifty Admin [ RECOMMENDED ]-->
-{{ javascript_include('/public/vendors/nifty-template/template/js/nifty.min.js') }}
-<!--Bootstrap Select [ OPTIONAL ]-->
-{{ javascript_include('/public/vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.js') }}
-
-<!-- JS added with volt -->
-{% block js %}{% endblock %}
-</body>
+  <!--jQuery [ REQUIRED ]-->
+  {{ javascript_include('/public/vendors/nifty-template/template/js/jquery-2.1.1.min.js') }}
+  <!--BootstrapJS [ RECOMMENDED ]-->
+  {{ javascript_include('/public/vendors/nifty-template/template/js/bootstrap.min.js') }}
+  <!--Nifty Admin [ RECOMMENDED ]-->
+  {{ javascript_include('/public/vendors/nifty-template/template/js/nifty.min.js') }}
+ 
+  <!-- JS added with volt -->
+  {% block js %}{% endblock %}
+  </body>
 </html>

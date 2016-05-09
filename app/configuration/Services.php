@@ -33,17 +33,16 @@ class Services {
     //$this->setAcl();
     //$this->setMemcache();
     //$this->setDispatcher();
-    //$this->setSecurityHash();
+    $this->setSecurityHash();
     $this->setSessionManager();
-
-    $this->setFlashSessionMessages();
+    $this->setMessages();
     //$this->setFlashMessages();
 
     //$this->setModelsMetadata();
     //$this->setUploadConfig();
 
-    //$this->setDb();
-    //$this->setModelsManager();
+    $this->setDb();
+    $this->setModelsManager();
 
     //$this->setTmpFolder();
 
@@ -264,9 +263,8 @@ class Services {
     $config = $this->config;
     $this->di->setShared('session', function() use ($config) {
       $session = new \Phalcon\Session\Adapter\Files(
-              array(
-          'uniqueId' => $config->session->key
-      ));
+        array('uniqueId' => $config->session->key)
+      );
       $session->start();
       return $session;
     });
@@ -276,8 +274,8 @@ class Services {
    * Flash Object, para mantener mensajes flash entre una página y otra
    * @return DI object
    */
-  private function setFlashSessionMessages() {
-    $this->di->set('flash', function() {
+  private function setMessages() {
+    $this->di->set('message', function() {
       $flash = new \Phalcon\Flash\Session(array(
           'error' => 'alert alert-danger',
           'success' => 'alert alert-success',
