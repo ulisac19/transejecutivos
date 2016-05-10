@@ -203,7 +203,7 @@
                 <ul id="mainnav-menu" class="list-group">
                   <!--Menu list item-->
                   <li class="active-link">
-                    <a href="http://www.transportesejecutivos.com/admin/main.php" data-original-title="" title="" class="">
+                    <a href="#" data-original-title="" title="" class="">
                       <i class="fa fa-dashboard"></i>
                       <span class="menu-title">
                         <strong>Dashboard</strong>

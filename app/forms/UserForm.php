@@ -124,14 +124,18 @@ class UserForm extends Form {
 
     //Estado
     $status = new Check('status', array(
-        'value' => 1,
         'id' => 'status',
         'class' => 'switchery',
         'checked' => 'checked',
-        'id' => 'status'
     ));
     $status->setLabel("*Estado");
     $this->add($status);
   }
 
+  public function beforeValidation() {
+    $status = $this->get("status");
+    $attributes = $status->getAttributes();
+    $attributes['value'] = (empty($attributes['value']) ? 0 : 1);
+    $status->setAttributes($attributes);
+  }
 }
