@@ -8,17 +8,18 @@ use \Phalcon\Validation\ValidatorInterface;
 
 class SpaceValidator extends Validator implements ValidatorInterface {
     public function validate(\Phalcon\Validation $validator, $attribute) {
-        //$message = $validator->getOption('message');
         $value  = $validator->getValue($attribute);
-
         $value2 = \trim($value);
         
         if (empty($value2)) {
-            $this->appendMessage(
-                $message,
-                $attribute,
-                "SpaceValidator"
-            );
+            $message = $this->getOption('message');
+            
+            if (!$message) {
+                $message = "El campo {$attribute} no puede estar vacío";
+            }
+
+            $validator->appendMessage(new Message($message, $attribute, 'SpaceValidator'));
+            
             return false;
         }
         return true;

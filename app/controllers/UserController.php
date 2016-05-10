@@ -3,7 +3,14 @@
 class UserController extends Controller {
 
   public function indexAction() {
-    
+    $currentPage = (int) $_GET["page"];
+        
+    $builder = $this->modelsManager->createBuilder()
+        ->from('User')
+        ->leftJoin('Role')
+        ->orderBy('User.createdon');
+
+    $this->view->setVar("page", $this->getPaginationWithQueryBuilder($builder, $currentPage));
   }
 
   public function newAction() {

@@ -32,7 +32,7 @@ class UserForm extends Form {
     //2. Agregamos una etiqueta para mostrar en el formulario de la vista
     $name->setLabel("*Nombres");
     //3. Ahora añadimos validadores de Phalcon php, estos se encargan de validar que los valores ingresados en los campos por el usuario sean correctos.
-    $name->addValidator(new SpaceValidator(array('message' => 'Debes ingresar un nombre para el usuario')));
+    $name->addValidator(new SpaceValidator(array('message' => 'El campo nombre se encuentra vacío')));
     $name->addValidator(new StringLength(array('min' => 2,'messageMinimum' => 'El nombre es demasiado corto, debe tener al menos 2 carateres')));
     //4. Agregamos el objeto de tipo TEXT a una lista de campos, para luego hacer la respectiva llamada en la vista.
     $this->add($name);
@@ -46,7 +46,7 @@ class UserForm extends Form {
         'id' => 'lastname'
     ));
     $lastname->setLabel("*Apellidos");
-    $lastname->addValidator(new SpaceValidator(array('message' => 'Debes ingresar un apellido para el usuario')));
+    $lastname->addValidator(new SpaceValidator(array('message' => 'El campo apellido, se encuentra vacío')));
     $lastname->addValidator(new StringLength(array('min' => 2,'messageMinimum' => 'El apellido es demasiado corto, debe tener al menos 2 carateres')));
     $this->add($lastname);
     
@@ -70,8 +70,8 @@ class UserForm extends Form {
         'class' => 'form-control',
         'id' => 'phone1'
     ));
-    $phone1->setLabel("*Telefono de Contacto 1");
-    $phone1->addValidator(new SpaceValidator(array('message' => 'Debes ingresar un número de teléfono valido para el usuario')));
+    $phone1->setLabel("*Teléfono de Contacto 1");
+    $phone1->addValidator(new SpaceValidator(array('message' => 'El campo Teléfono de contacto 1, no puede estar vacío')));
     $phone1->addValidator(new StringLength(array('min' => 7,'messageMinimum' => 'El número de teléfono es demasiado corto, debe tener al menos 7 carateres')));
     $this->add($phone1);
 
@@ -82,7 +82,7 @@ class UserForm extends Form {
         'class' => 'form-control',
         'id' => 'phone2'
     ));
-    $phone2->setLabel("Telefono de Contacto 2");
+    $phone2->setLabel("Teléfono de Contacto 2");
     $this->add($phone2);
     
     //Dirección
@@ -94,8 +94,8 @@ class UserForm extends Form {
         'id' => 'address'
     ));
     $address->setLabel("*Dirección");
-    $address->addValidator(new SpaceValidator(array('message' => 'Debes ingresar una dirección válida para el usuario')));
-    $address->addValidator(new StringLength(array('min' => 8,'messageMinimum' => 'La dirección es demasiada corto, debe tener al menos 8 carateres')));
+    $address->addValidator(new SpaceValidator(array('message' => 'El campo dirección, no puede estar vacía')));
+    $address->addValidator(new StringLength(array('min' => 8,'messageMinimum' => 'La dirección es demasiada corta, debe tener al menos 8 carateres')));
     $this->add($address);
 
     //Role o tipo de usuario

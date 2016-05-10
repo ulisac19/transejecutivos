@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Mvc\Model\Validator\Uniqueness;
+
 class User extends Model {
 
   public $idUser;
