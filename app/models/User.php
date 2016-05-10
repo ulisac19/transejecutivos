@@ -18,4 +18,14 @@ class User extends Model {
   public function initialize() {
     $this->belongsTo("idRole", "Role", "idRole");
   }
+
+  public function validation() {
+    $this->validate(new Uniqueness(array(
+        "field" => "email",
+        "message" => "El correo electrónico ingresado, ya se encuentra registrado en la plataforma"
+    )));
+    if ($this->validationHasFailed() == true) {
+      return false;
+    }
+  }
 }

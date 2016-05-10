@@ -2,22 +2,21 @@
 
 namespace Transejecutivos\Validators;
 
-use \Phalcon\Mvc\Model\Validator;
-use \Phalcon\Mvc\Model\ValidatorInterface;
+use \Phalcon\Validation\Message;
+use \Phalcon\Validation\Validator;
+use \Phalcon\Validation\ValidatorInterface;
 
 class SpaceValidator extends Validator implements ValidatorInterface {
-    public function validate(\Phalcon\Mvc\ModelInterface $model) {
-        $message = $this->getOption('message');
-        $field  = $this->getOption('field');
-
-        $value  = $model->$field;
+    public function validate(\Phalcon\Validation $validator, $attribute) {
+        //$message = $validator->getOption('message');
+        $value  = $validator->getValue($attribute);
 
         $value2 = \trim($value);
         
         if (empty($value2)) {
             $this->appendMessage(
                 $message,
-                $field,
+                $attribute,
                 "SpaceValidator"
             );
             return false;

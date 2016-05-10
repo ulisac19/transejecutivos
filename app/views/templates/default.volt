@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=1">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <link rel="icon" type="image/x-icon" href="{{url('')}}images/favicons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{url('')}}public/images/favicons/favicon.ico">
+    <title>Transportes Ejecutivos</title>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
