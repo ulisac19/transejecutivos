@@ -4,13 +4,28 @@ class UserController extends Controller {
 
   public function indexAction() {
     $currentPage = (int) $_GET["page"];
-        
-    $builder = $this->modelsManager->createBuilder()
+    $idRole = (int) $_GET["role"];
+    $name = (int) $_GET["name"];
+    
+    if (empty($idRole)) {
+      $builder = $this->modelsManager->createBuilder()
         ->from('User')
         ->leftJoin('Role')
         ->orderBy('User.createdon');
-
+    }
+    else {
+      $builder = $this->modelsManager->createBuilder()
+        ->from('User')
+        ->leftJoin('Role')
+        ->where('User.idRole = :idRole:', array('idRole' => $idRole))
+        ->orderBy('User.createdon');
+    }
+    
     $this->view->setVar("page", $this->getPaginationWithQueryBuilder($builder, $currentPage));
+    
+    $roles = Role::find();
+    $this->view->setVar("roles", $roles);
+    $this->view->setVar("idRole", $idRole);
   }
 
   public function newAction() {

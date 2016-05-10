@@ -157,7 +157,6 @@ class Controller extends \Phalcon\Mvc\Controller {
         "limit" => self::DEFAULT_LIMIT,
         "page" => $page
     ));
-
     return $paginator->getPaginate();
   }
 

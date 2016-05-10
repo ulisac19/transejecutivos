@@ -1,7 +1,24 @@
 {% extends "templates/default.volt" %}
 {% block css %}
+  {{ stylesheet_link('/public/vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.css') }}
 {% endblock %}
 {% block js %}
+  {{ javascript_include('/public/vendors/nifty-template/template/plugins/bootstrap-select/bootstrap-select.min.js') }}
+  <script>
+    $(function() {
+      $('.select-picker').selectpicker({
+        style: 'btn-info',
+        size: 4
+      });
+      
+      $('#role').change(function () {
+        var id = $(this).val();
+        console.log(id);
+        console.log("{{url('user/index')}}?page=1&role=" + id);
+        location.replace("{{url('user/index')}}?page=1&role=" + id);
+      });
+    });
+  </script>
 {% endblock %}
 {% block content %}
   <div id="page-title">
@@ -9,71 +26,129 @@
 
     <div class="row">
       <div class="col-md-offset-3 col-md-6">
-        <div class="text-right">
-          <a href="{{url('account/add')}}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
-        </div>
-        <br>
         {{flashSession.output()}}
       </div>    
     </div> 
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-offset-1 col-md-10">
         <div id="page-content">
           <div class="panel">
-            {% if page.items|length > 0%}
-              <div class="row">
-                <div class="col-md-offset-3 col-md-6">
-                  <div class="row">
-                    {{ partial('partials/pagination', ['pagination_url': 'account/index']) }}
+            <div class="panel-heading">
+              <div class="row block">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <select id="role" class="form-control select-picker">
+                      <option value="">Todos los roles</option>
+                      {% for role in roles %}
+                        <option value="{{role.idRole}}" {% if idRole ==  role.idRole%}selected{% endif %}>{{role.name}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Datos de Contacto</th>
-                          <th></th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for item in page.items %}
-                          <tr {% if item.status == 0 %}class="danger"{% endif %}>
-                            <td>
-                              <strong>{{item.idUser}} - {{item.email}}</strong> <br>
-                              <dl>
-                                <dd>{{item.name}} {{item.lastname}}</dd>
-                                <dd>{{item.phone1}} - {{item.phone2}}</dd>
-                                <dd>{{item.address}}</dd>
-                              </dl>
-                            </td>
-                            <td>
-                              {{item.role.name}} <br>
-                              Creado {{date('d/M/Y', item.createdon)}} <br> 
-                              Actualizado {{date('d/M/Y', item.updatedon)}}
-                            </td>
-                            <td class="text-right">
-                              <a href="{{url('user/update')}}/{{item.idUser}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></i></a>
-                              <a id="show-delete-modal" data-toggle="modal" href="#delete-modal" data-id="{{url('user/deactivate')}}/{{item.idUser}}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
-                            </td>
-                          </tr>    
-                        {% endfor %}
-                      </tbody>
-                    </table>
+                <div class="col-md-4">
+                  <div class="input-group mar-btm">
+                    <input type="text" placeholder="Escriba el nombre o apellido del usuario" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger btn-labeled fa fa-search" type="button">Buscar</button>
+                    </span>
                   </div>
+                </div>
+                <div class="col-md-4 text-right">
+                <a href="{{url('user/new')}}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
+                </div>
+              </div>  
+            </div>
 
-                  <div class="row">
-                    {{ partial('partials/pagination', ['pagination_url': 'account/index']) }}
+            <div class="panel-body">
+              {% if page.items|length > 0%}
+                <div class="row">
+                  <div class="col-md-offset-3 col-md-6">
+                    <div class="row">
+                      {{ partial('partials/pagination', ['pagination_url': 'user/index']) }}
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% else %}        
-              {{ partial('partials/empty-rows', ['resource_name': 'Cuentas', 'resource_url': 'account/add']) }}
-            {% endif %} 
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Datos de Contacto</th>
+                            <th></th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for item in page.items %}
+                            <tr {% if item.status == 0 %}class="danger"{% endif %}>
+                              <td>
+                                {{item.idUser}}
+                              </td>
+                              <td>
+                                <strong class="md-text">{{item.email}}</strong> <br>
+                                <dl>
+                                  <dd class="sm-text">{{item.name}} {{item.lastname}}</dd>
+                                  <dd>{{item.phone1}} - {{item.phone2}}</dd>
+                                  <dd><em>{{item.address}}</em></dd>
+                                </dl>
+                              </td>
+                              <td>
+                                <span class="label 
+                                      {% if item.role.idRole == 1 %}
+                                        label-success
+                                      {% elseif item.role.idRole == 2 %}
+                                        label-info
+                                      {% else %}
+                                        label-default
+                                      {% endif %}
+                                ">
+                                  {{item.role.name}}
+                                </span> <br>
+                                <em class="xs-text">
+                                  Creado {{date('d/M/Y H:i', item.createdon)}} <br> 
+                                  Actualizado {{date('d/M/Y H:i', item.updatedon)}}
+                                </em>
+                              </td>
+                              <td class="text-right">
+                                <a href="{{url('user/update')}}/{{item.idUser}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></i></a>
+                                <a id="show-delete-modal" data-toggle="modal" href="#delete-modal" data-id="{{url('user/disable')}}/{{item.idUser}}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></a>
+                              </td>
+                            </tr>    
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="row">
+                      <div id="pagination" class="text-center">
+                        <ul class="pagination">
+                            <li class="{{ (page.current == 1)?'disabled':'enabled' }}">
+                                <a href="{{ url('user/index') }}?page=1&role={{idRole}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="{{ (page.current == 1)?'disabled':'enabled' }}">
+                                <a href="{{ url('user/index') }}?page={{ page.before }}&role={{idRole}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <span><b>{{page.total_items}}</b> registros </span><span>Página <b>{{page.current}}</b> de <b>{{page.total_pages}}</b></span>
+                            </li>
+                            <li class="{{ (page.current >= page.total_pages)?'disabled':'enabled' }}">
+                                <a href="{{ url('user/index') }}?page={{page.next}}&role={{idRole}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="{{ (page.current >= page.total_pages)?'disabled':'enabled' }}">
+                                <a href="{{ url('user/index') }}?page={{page.last}}&role={{idRole}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-fast-forward" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              {% else %}        
+                {{ partial('partials/empty-rows', ['resource_name': 'Usuarios', 'resource_url': 'user/new']) }}
+              {% endif %} 
+            </div>
           </div>
         </div>
       </div>

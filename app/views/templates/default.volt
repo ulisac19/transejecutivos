@@ -23,7 +23,7 @@
     {{ javascript_include('/public/vendors/nifty-template/template/plugins/pace/pace.min.js') }}
 
     <!-- Custom CSS -->
-    {{ stylesheet_link('css/adjustments.css') }}
+    {{ stylesheet_link('/public/css/adjustments.css') }}
 
     <!-- CSS added with volt-->
   {% block css %}{% endblock %}

@@ -29,33 +29,32 @@
             <h3 class="panel-title">Lea atentamente las indicaciones de la derecha</h3>
           </div>
 
-          <!--Horizontal Form-->
-          <!--===================================================-->
-          <form class="form-horizontal" method="POST" action="{{url('user/new')}}">
             <div class="panel-body">
-              <div class="form-group">
-                <div class="col-md-12">
-                  {{message.output()}}
-                </div>
-              </div>
-              
-              {% for element in form %}
+              <!--Horizontal Form-->
+              <!--===================================================-->
+              <form class="form-horizontal" method="POST" action="{{url('user/new')}}">
                 <div class="form-group">
-                  {{ element.label(['class': 'col-sm-4 control-label']) }}
-                  <div class="col-sm-8">
-                    {{ element.render() }}
+                  <div class="col-md-12">
+                    {{message.output()}}
                   </div>
                 </div>
-              {% endfor %}
               
-              <div class="panel-footer text-right">
-                <a href="{{url('user')}}" class="btn btn-default" type="submit">Cancelar</a>
-                <button class="btn btn-info" type="submit">Crear</button>
-              </div>
-          </form>
-          <!--===================================================-->
-          <!--End Horizontal Form-->
-
+                {% for element in form %}
+                  <div class="form-group">
+                    {{ element.label(['class': 'col-sm-4 control-label']) }}
+                    <div class="col-sm-8">
+                      {{ element.render() }}
+                    </div>
+                  </div>
+                {% endfor %}
+              
+                <div class="panel-footer text-right">
+                  <a href="{{url('user')}}" class="btn btn-default" type="submit">Cancelar</a>
+                  <button class="btn btn-info" type="submit">Crear</button>
+                </div>
+              </form>
+            <!--===================================================-->
+            <!--End Horizontal Form-->
         </div>
       </div>
     </div>
