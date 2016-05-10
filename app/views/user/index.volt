@@ -13,11 +13,23 @@
       
       $('#role').change(function () {
         var id = $(this).val();
-        console.log(id);
-        console.log("{{url('user/index')}}?page=1&role=" + id);
-        location.replace("{{url('user/index')}}?page=1&role=" + id);
+        var name = $("#name").val();
+        location.replace("{{url('user/index')}}?page=1&role=" + id + "&name=" + name);
       });
     });
+    
+    function search() {
+      var id =$('#role').val();
+      var name = $("#name").val();
+      
+      if (name !== "" && name !== null && name !== undefined) {
+        location.replace("{{url('user/index')}}?page=1&role=" + id + "&name=" + name);
+      }
+    }
+    
+    function reset() {
+      location.replace("{{url('user/index')}}?page=1&role=0&name=");
+    } 
   </script>
 {% endblock %}
 {% block content %}
@@ -48,9 +60,10 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group mar-btm">
-                    <input type="text" placeholder="Escriba el nombre o apellido del usuario" class="form-control">
+                    <input  name="name" id="name" type="text" placeholder="Escriba el nombre o apellido del usuario" class="form-control" value="{{name}}">
                     <span class="input-group-btn">
-                      <button class="btn btn-danger btn-labeled fa fa-search" type="button">Buscar</button>
+                      <button class="btn btn-danger btn-labeled fa fa-search" type="button" onClick="search();">Buscar</button>
+                      <button class="btn btn-primary" type="button" onClick="reset();"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                     </span>
                   </div>
                 </div>
@@ -126,19 +139,19 @@
                       <div id="pagination" class="text-center">
                         <ul class="pagination">
                             <li class="{{ (page.current == 1)?'disabled':'enabled' }}">
-                                <a href="{{ url('user/index') }}?page=1&role={{idRole}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
+                                <a href="{{ url('user/index') }}?page=1&role={{idRole}}&name={{name}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
                             </li>
                             <li class="{{ (page.current == 1)?'disabled':'enabled' }}">
-                                <a href="{{ url('user/index') }}?page={{ page.before }}&role={{idRole}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                                <a href="{{ url('user/index') }}?page={{ page.before }}&role={{idRole}}&name={{name}}" class="new-element {{ (page.current == 1)?'disabled':'enabled' }}"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
                             </li>
                             <li>
                                 <span><b>{{page.total_items}}</b> registros </span><span>Página <b>{{page.current}}</b> de <b>{{page.total_pages}}</b></span>
                             </li>
                             <li class="{{ (page.current >= page.total_pages)?'disabled':'enabled' }}">
-                                <a href="{{ url('user/index') }}?page={{page.next}}&role={{idRole}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                                <a href="{{ url('user/index') }}?page={{page.next}}&role={{idRole}}&name={{name}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
                             </li>
                             <li class="{{ (page.current >= page.total_pages)?'disabled':'enabled' }}">
-                                <a href="{{ url('user/index') }}?page={{page.last}}&role={{idRole}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-fast-forward" aria-hidden="true"></i></a>
+                                <a href="{{ url('user/index') }}?page={{page.last}}&role={{idRole}}&name={{name}}" class="new-element {{ (page.current >= page.total_pages)?'disabled':'enabled' }}"><i class="fa fa-fast-forward" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>

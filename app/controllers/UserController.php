@@ -5,20 +5,34 @@ class UserController extends Controller {
   public function indexAction() {
     $currentPage = (int) $_GET["page"];
     $idRole = (int) $_GET["role"];
-    $name = (int) $_GET["name"];
+    $n = $_GET["name"];
+    $name = explode(" ", $n);
     
-    if (empty($idRole)) {
-      $builder = $this->modelsManager->createBuilder()
+    
+    
+    $builder = $this->modelsManager->createBuilder()
         ->from('User')
         ->leftJoin('Role')
         ->orderBy('User.createdon');
+    
+    if (!empty($idRole)) {
+      $builder->where('User.idRole = :idRole:', array('idRole' => $idRole));
+      if (!empty($name[0])) {
+        $builder->andWhere('User.name LIKE :name:', array('name' => "%{$name[0]}%"));
+      }
+      
+      if (!empty($name[1])) {
+        $builder->orWhere('User.lastname LIKE :lastname:', array('lastname' => "%{$name[1]}%"));
+      }
     }
     else {
-      $builder = $this->modelsManager->createBuilder()
-        ->from('User')
-        ->leftJoin('Role')
-        ->where('User.idRole = :idRole:', array('idRole' => $idRole))
-        ->orderBy('User.createdon');
+      if (!empty($name[0])) {
+        $builder->where('User.name LIKE :name:', array('name' => "%{$name[0]}%"));
+      }
+      
+      if (!empty($name[1])) {
+        $builder->orWhere('User.lastname LIKE :lastname:', array('lastname' => "%{$name[1]}%"));
+      }
     }
     
     $this->view->setVar("page", $this->getPaginationWithQueryBuilder($builder, $currentPage));
@@ -26,6 +40,7 @@ class UserController extends Controller {
     $roles = Role::find();
     $this->view->setVar("roles", $roles);
     $this->view->setVar("idRole", $idRole);
+    $this->view->setVar("name", $n);
   }
 
   public function newAction() {
