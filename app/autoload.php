@@ -15,7 +15,8 @@ $loader->registerNamespaces(array(
     'Transejecutivos\\Logic' => realpath(dirname(__FILE__)) . '/logic/',
     'Transejecutivos\\Configuration' => realpath(dirname(__FILE__)) . '/configuration/',
     'Transejecutivos\\Validators' => realpath(dirname(__FILE__)) . '/validators/',
-    'Transejecutivos\\Plugins' => realpath(dirname(__FILE__)) . '/plugins/'
+    'Transejecutivos\\Plugins' => realpath(dirname(__FILE__)) . '/plugins/',
+    'Transejecutivos\\Wrappers' => realpath(dirname(__FILE__)) . '/wrappers/'
         ), true);
 
 // register autoloader
