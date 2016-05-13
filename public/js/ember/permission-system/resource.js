@@ -1,8 +1,8 @@
 //Model
 App.Resource = DS.Model.extend({
     name: DS.attr('string'),
-    created: DS.attr('string'),
-    updated: DS.attr('string'),
+    createdon: DS.attr('string'),
+    updatedon: DS.attr('string'),
     actions: DS.hasMany('action')
 });
 
