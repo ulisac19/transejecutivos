@@ -114,7 +114,7 @@ class Services {
   public function setRouter() {
     $this->di->set('router', function () {
       $router = new \Phalcon\Mvc\Router\Annotations();
-      $router->addResource('Api', '/api');
+      $router->addResource('Apisecurity', '/api/security');
       return $router;
     });
   }
