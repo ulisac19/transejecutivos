@@ -74,3 +74,25 @@
     [checked] => checked
 )
 
+[Mon, 16 May 16 20:26:26 +0200][DEBUG] Exception while creating user: Element with ID=status is not part of the form
+[Mon, 16 May 16 20:26:26 +0200][DEBUG] #0 C:\xampp\htdocs\transejecutivos\app\forms\PassengerForm.php(130): Phalcon\Forms\Form->get('status')
+#1 [internal function]: PassengerForm->beforeValidation(Array, NULL)
+#2 C:\xampp\htdocs\transejecutivos\app\controllers\Controller.php(82): Phalcon\Forms\Form->isValid()
+#3 C:\xampp\htdocs\transejecutivos\app\controllers\PassengerController.php(40): Controller->saveModel(Object(PassengerForm), Object(Passenger), 'Se ha creado el...')
+#4 [internal function]: PassengerController->newAction()
+#5 [internal function]: Phalcon\Dispatcher->callActionMethod(Object(PassengerController), 'newAction', Array)
+#6 [internal function]: Phalcon\Dispatcher->_dispatch()
+#7 [internal function]: Phalcon\Dispatcher->dispatch()
+#8 C:\xampp\htdocs\transejecutivos\index.php(15): Phalcon\Mvc\Application->handle()
+#9 {main}
+[Mon, 16 May 16 20:29:02 +0200][DEBUG] Exception while creating passenger: Element with ID=status is not part of the form
+[Mon, 16 May 16 20:29:02 +0200][DEBUG] #0 C:\xampp\htdocs\transejecutivos\app\forms\PassengerForm.php(130): Phalcon\Forms\Form->get('status')
+#1 [internal function]: PassengerForm->beforeValidation(Array, NULL)
+#2 C:\xampp\htdocs\transejecutivos\app\controllers\Controller.php(82): Phalcon\Forms\Form->isValid()
+#3 C:\xampp\htdocs\transejecutivos\app\controllers\PassengerController.php(40): Controller->saveModel(Object(PassengerForm), Object(Passenger), 'Se ha creado el...')
+#4 [internal function]: PassengerController->newAction()
+#5 [internal function]: Phalcon\Dispatcher->callActionMethod(Object(PassengerController), 'newAction', Array)
+#6 [internal function]: Phalcon\Dispatcher->_dispatch()
+#7 [internal function]: Phalcon\Dispatcher->dispatch()
+#8 C:\xampp\htdocs\transejecutivos\index.php(15): Phalcon\Mvc\Application->handle()
+#9 {main}
