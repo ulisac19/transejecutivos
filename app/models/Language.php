@@ -11,7 +11,7 @@ class Language extends Model {
   }
 
   public function initialize() {
-  	$this->hasMany("idlanguage", "Languagedriver", "idlanguage");
+
   }
 }
 

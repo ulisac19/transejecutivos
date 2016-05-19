@@ -19,8 +19,6 @@ class Doc extends Model {
   }
 
   public function initialize() {
-  	$this->belongsTo("idType_doc", "Typedoc", "idType_doc");
-  	$this->belongsTo("iddriver", "Driver", "iddriver");
   }
 }
 

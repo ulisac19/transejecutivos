@@ -8,7 +8,7 @@ class PassengerController extends Controller {
 
     $builder = $this->modelsManager->createBuilder()
         ->from('Passenger')
-        ->orderBy('Passenger.createdon');
+        ->orderBy('Passenger.created_date');
 
     if (!empty($name[0]))
     {
@@ -38,7 +38,7 @@ class PassengerController extends Controller {
         $form->bind($this->request->getPost(), $passenger);
         $mail1 = $form->getValue('mail1');
         $passenger->code = $this->hash->hash($mail1);
-        $passenger->createdon = date('Y-m-d');
+        $passenger->created_date = date('Y-m-d');
 
         if ($this->saveModel($form, $passenger, "Se ha creado el usuario exitosamente")) {
           return $this->response->redirect("passenger");

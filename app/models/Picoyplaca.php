@@ -10,7 +10,7 @@ class Picoyplaca extends Model {
   }
 
   public function initialize() {
-  	$this->hasMany("idpicoyplaca", "Picoyplacadrive", "idpicoyplaca");
+
   }
 }
 

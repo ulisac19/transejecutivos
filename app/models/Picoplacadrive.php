@@ -1,6 +1,6 @@
 <?php
 
-class Picoyplacadrive extends Model {
+class Picoyplaca extends Model {
 
 	public $idpico_placa_drive;
 	public $idpicoyplaca;
@@ -11,8 +11,7 @@ class Picoyplacadrive extends Model {
   }
 
   public function initialize() {
-  	$this->belongsTo("idpicoyplaca", "Picoyplaca", "idpicoyplaca");
-  	$this->belongsTo("iddriver", "Driver", "iddriver");
+
   }
 }
 

@@ -13,7 +13,6 @@
 	  }
 
 	  public function initialize() {
-	  	$this->hasMany("idmethod_pay", "Driver", "idmethod_pay");
 	  }
 	}
 
