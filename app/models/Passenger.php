@@ -17,8 +17,8 @@ class Passenger extends Model {
    public $code;
    public $created_by;
    public $edited_by;
-   public $created_date;
-   public $edited_date;
+   public $createdon;
+   public $editedon;
    public $address;
    public $observations;
   
