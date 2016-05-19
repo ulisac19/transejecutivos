@@ -12,6 +12,7 @@ class Typedoc extends Model {
 
   public function initialize() {
   	//$this->setSource("type_doc");
+  	$this->hasMany("idType_doc", "Doc", "idType_doc");
   }
 }
 

@@ -1,5 +1,6 @@
 <?php
-class PassengerController extends Controller {
+class DriverController extends Controller {
+
   	public function indexAction() {
 
     $currentPage = (int) $_GET["page"];
@@ -7,17 +8,17 @@ class PassengerController extends Controller {
     $name = explode(" ", $n);
 
     $builder = $this->modelsManager->createBuilder()
-        ->from('Passenger')
-        ->orderBy('Passenger.createdon');
+        ->from('driver')
+        ->orderBy('driver.created_date');
 
     if (!empty($name[0]))
     {
-       	$builder->where('Passenger.name LIKE :name:', array('name' => "%{$name[0]}%"));
+       	$builder->where('driver.name LIKE :name:', array('name' => "%{$name[0]}%"));
     }
       
     if (!empty($name[1]))
     {
-    	$builder->orWhere('Passenger.lastname LIKE :lastname:', array('lastname' => "%{$name[1]}%"));
+    	$builder->orWhere('driver.lastname LIKE :lastname:', array('lastname' => "%{$name[1]}%"));
     }
 
     $this->view->setVar("page", $this->getPaginationWithQueryBuilder($builder, $currentPage));
@@ -27,7 +28,7 @@ class PassengerController extends Controller {
 
 
     public function newAction() {
-    $form = new PassengerForm();
+    $form = new DriverForm();
     
     $this->view->setVar("form", $form);
 
@@ -36,9 +37,9 @@ class PassengerController extends Controller {
       try {
         $passenger = new Passenger();
         $form->bind($this->request->getPost(), $passenger);
-        $mail1 = $form->getValue('mail1');
+        $mail1 = $form->getValue('email1');
         $passenger->code = $this->hash->hash($mail1);
-        $passenger->createdon = date('Y-m-d');
+        $passenger->created_date = date('Y-m-d');
 
         if ($this->saveModel($form, $passenger, "Se ha creado el usuario exitosamente")) {
           return $this->response->redirect("passenger");
@@ -52,7 +53,8 @@ class PassengerController extends Controller {
       }
     }
   }
-
+  
+/*
   public function updateAction($id) {
     $passenger = Passenger::findFirst(array("conditions" => "idPassenger = ?0", "bind" => array($id)));
     $this->validateModel($passenger, "No se encontró el Pasajero", "passenger");
@@ -80,6 +82,6 @@ class PassengerController extends Controller {
       }
     }
   }
-
+*/
 
 }
