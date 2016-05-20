@@ -90,4 +90,11 @@ class UserController extends Controller {
       }
     }
   }
+
+  public function passwordAction(){
+    $form = new passwordForm();
+    $this->view->setVar("form", $form);
+  }
+
+
 }
